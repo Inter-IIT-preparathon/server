@@ -1,0 +1,1149 @@
+openapi: 3.0.0
+info:
+  title: Travel Social Network API
+  version: 1.0.0
+paths:
+  /users:
+    get:
+      summary: Get a list of all users
+      responses:
+        '200':
+          description: List of users retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid input or user already exists
+
+  /users/{user_id}:
+    get:
+      summary: Get user by ID
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+
+    put:
+      summary: Update user by ID
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdate'
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid input
+        '404':
+          description: User not found
+
+    delete:
+      summary: Delete user by ID
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: User deleted successfully
+        '404':
+          description: User not found
+
+  /communities:
+    get:
+      summary: Get a list of all communities
+      responses:
+        '200':
+          description: List of communities retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Community'
+
+    post:
+      summary: Create a new community
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommunityCreate'
+      responses:
+        '201':
+          description: Community created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Community'
+        '400':
+          description: Invalid input or community already exists
+
+  /communities/{community_id}:
+    get:
+      summary: Get community by ID
+      parameters:
+        - name: community_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Community retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Community'
+        '404':
+          description: Community not found
+
+    put:
+      summary: Update community by ID
+      parameters:
+        - name: community_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommunityUpdate'
+      responses:
+        '200':
+          description: Community updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Community'
+        '400':
+          description: Invalid input
+        '404':
+          description: Community not found
+
+    delete:
+      summary: Delete community by ID
+      parameters:
+        - name: community_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Community deleted successfully
+        '404':
+          description: Community not found
+
+  /trips:
+    get:
+      summary: Get a list of all trips
+      responses:
+        '200':
+          description: List of trips retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Trip'
+
+    post:
+      summary: Create a new trip
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TripCreate'
+      responses:
+        '201':
+          description: Trip created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trip'
+        '400':
+          description: Invalid input
+
+  /trips/{trip_id}:
+    get:
+      summary: Get trip by ID
+      parameters:
+        - name: trip_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Trip retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trip'
+        '404':
+          description: Trip not found
+
+    put:
+      summary: Update trip by ID
+      parameters:
+        - name: trip_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TripUpdate'
+      responses:
+        '200':
+          description: Trip updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trip'
+        '400':
+          description: Invalid input
+        '404':
+          description: Trip not found
+
+    delete:
+      summary: Delete trip by ID
+      parameters:
+        - name: trip_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Trip deleted successfully
+        '404':
+          description: Trip not found
+
+  /trains:
+    get:
+      summary: Get a list of all trains
+      responses:
+        '200':
+          description: List of trains retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Train'
+
+    post:
+      summary: Create a new train
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrainCreate'
+      responses:
+        '201':
+          description: Train created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Train'
+        '400':
+          description: Invalid input
+
+  /trains/{transport_id}:
+    get:
+      summary: Get train by transport ID
+      parameters:
+        - name: transport_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Train retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Train'
+        '404':
+          description: Train not found
+
+    put:
+      summary: Update train by transport ID
+      parameters:
+        - name: transport_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrainUpdate'
+      responses:
+        '200':
+          description: Train updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Train'
+        '400':
+          description: Invalid input
+        '404':
+          description: Train not found
+
+    delete:
+      summary: Delete train by transport ID
+      parameters:
+        - name: transport_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Train deleted successfully
+        '404':
+          description: Train not found
+
+
+  /roads:
+    get:
+      summary: Get a list of all road transports
+      responses:
+        '200':
+          description: List of road transports retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Road'
+
+    post:
+      summary: Create a new road transport
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoadCreate'
+      responses:
+        '201':
+          description: Road transport created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Road'
+        '400':
+          description: Invalid input
+
+  /roads/{transport_id}:
+    get:
+      summary: Get road transport by transport ID
+      parameters:
+        - name: transport_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Road transport retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Road'
+        '404':
+          description: Road transport not found
+
+    put:
+      summary: Update road transport by transport ID
+      parameters:
+        - name: transport_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoadUpdate'
+      responses:
+        '200':
+          description: Road transport updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Road'
+        '400':
+          description: Invalid input
+        '404':
+          description: Road transport not found
+
+    delete:
+      summary: Delete road transport by transport ID
+      parameters:
+        - name: transport_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Road transport deleted successfully
+        '404':
+          description: Road transport not found
+
+  /flights:
+    get:
+      summary: Get a list of all flight transports
+      responses:
+        '200':
+          description: List of flight transports retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Flight'
+
+    post:
+      summary: Create a new flight transport
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlightCreate'
+      responses:
+        '201':
+          description: Flight transport created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Flight'
+        '400':
+          description: Invalid input
+
+  /flights/{transport_id}:
+    get:
+      summary: Get flight transport by transport ID
+      parameters:
+        - name: transport_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Flight transport retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Flight'
+        '404':
+          description: Flight transport not found
+
+    put:
+      summary: Update flight transport by transport ID
+      parameters:
+        - name: transport_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlightUpdate'
+      responses:
+        '200':
+          description: Flight transport updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Flight'
+        '400':
+          description: Invalid input
+        '404':
+          description: Flight transport not found
+
+    delete:
+      summary: Delete flight transport by transport ID
+      parameters:
+        - name: transport_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Flight transport deleted successfully
+        '404':
+          description: Flight transport not found
+
+  /users/{user_id}/friends:
+    get:
+      summary: Get friends of a user
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      security:
+        - customJwt: []
+        - oauth2: ['read']
+      responses:
+        '200':
+          description: List of friends retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /users/{user_id}/friends/{friend_id}:
+    put:
+      summary: Add friend to user's friends
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: friend_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      security:
+        - customJwt: []
+        - oauth2: ['write']
+      responses:
+        '204':
+          description: Friend added successfully
+        '404':
+          description: User or friend not found
+    delete:
+      summary: Remove friend from user's friends
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: friend_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      security:
+        - customJwt: []
+        - oauth2: ['write']
+      responses:
+        '204':
+          description: Friend removed successfully
+        '404':
+          description: User or friend not found
+
+  /users/{user_id}/communities:
+    get:
+      summary: Get communities of a user
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of user's communities retrieved successfully
+          content:
+            application/json:
+              schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Community'
+
+  /users/{user_id}/communities/{community_id}:
+    post:
+      summary: Join a community
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: community_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: User sent join request to the community successfully
+        '400':
+          description: Invalid input or user is already part of the community
+
+    delete:
+      summary: Leave a community
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: community_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: User left the community successfully
+        '404':
+          description: User or community not found
+
+  /communities/{community_id}/trips:
+    post:
+      summary: Add a trip to a community
+      parameters:
+        - name: community_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TripCreate'
+      responses:
+        '201':
+          description: Trip added to the community successfully
+        '400':
+          description: Invalid input or trip is already part of the community
+
+  /communities/{community_id}/trips/{trip_id}:
+    delete:
+      summary: Remove a trip from a community
+      parameters:
+        - name: community_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: trip_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Trip removed from the community successfully
+        '404':
+          description: Trip not found or trip is not part of the community
+
+  /trips/{trip_id}/transport/{transport_id}:
+    post:
+      summary: Link transport to a trip
+      parameters:
+        - name: trip_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: transport_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Transport linked to trip successfully
+        '400':
+          description: Invalid input or transport is already linked to the trip
+
+    delete:
+      summary: Unlink transport from a trip
+      parameters:
+        - name: trip_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: transport_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Transport unlinked from trip successfully
+        '404':
+          description: Transport not found or transport is not linked to the trip
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        user_name:
+          type: string
+        user_bio:
+          type: string
+        user_mobile:
+          type: string
+        user_email:
+          type: string
+        user_password:
+          type: string
+
+    UserCreate:
+      type: object
+      properties:
+        user_name:
+          type: string
+        user_bio:
+          type: string
+        user_mobile:
+          type: string
+        user_email:
+          type: string
+        user_password:
+          type: string
+      required:
+        - user_name
+        - user_email
+
+    UserUpdate:
+      type: object
+      properties:
+        user_name:
+          type: string
+        user_bio:
+          type: string
+        user_mobile:
+          type: string
+        user_email:
+          type: string
+        user_password:
+          type: string
+
+
+    Community:
+      type: object
+      properties:
+        community_id:
+          type: integer
+        community_name:
+          type: string
+        community_desc:
+          type: string
+        community_admin_id:
+          type: integer #the user_id of the user who called the create community endpoint
+
+
+
+    CommunityCreate:
+      type: object
+      properties:
+        community_name:
+          type: string
+        community_desc:
+          type: string
+        community_admin_id:
+          type:  integer #the user_id of the user who called the create community endpoint
+      required:
+        - community_name
+
+
+    CommunityUpdate:
+      type: object
+      properties:
+        community_name:
+          type: string
+        community_desc:
+          type: string
+
+    Trip:
+      type: object
+      properties:
+        trip_id:
+          type: integer
+        trip_departure_datetime:
+          type: string
+          format: date-time
+        trip_arrival_datetime:
+          type: string
+          format: date-time
+        trip_origin:
+          type: string
+        trip_destination:
+          type: string
+        trip_name:
+          type: string
+        trip_desc:
+          type: string
+        trip_admin_id:
+          type: integer #the user_id of the user who called the create trip endpoint
+
+    TripCreate:
+      type: object
+      properties:
+        trip_departure_datetime:
+          type: string
+          format: date-time
+        trip_arrival_datetime:
+          type: string
+          format: date-time
+        trip_origin:
+          type: string
+        trip_destination:
+          type: string
+        trip_name:
+          type: string
+        trip_desc:
+          type: string
+        trip_admin_id:
+          type: integer #the user_id of the user who called the create trip endpoint
+      required:
+        - trip_departure_datetime
+        - trip_arrival_datetime
+        - trip_origin
+        - trip_destination
+        - trip_name
+
+    TripUpdate:
+      type: object
+      properties:
+        trip_departure_datetime:
+          type: string
+          format: date-time
+        trip_arrival_datetime:
+          type: string
+          format: date-time
+        trip_origin:
+          type: string
+        trip_destination:
+          type: string
+        trip_name:
+          type: string
+        trip_desc:
+          type: string
+
+    CommunityRequestObject:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          description: ID of the user
+        community_id:
+          type: integer
+          description: ID of the community or trip.
+        admin_id:
+          type: integer
+          description: ID of the admin of the community
+        request_type:
+          type: string
+          enum: [request, invite]
+          description: Type of the action (request or invite).
+        request_status:
+          type: string
+          enum: [accepted, rejected, pending]
+          description: Status of the request
+
+
+    communityRequestObjectCreate:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          description: ID of the requester or invitee.
+        community_id:
+          type: integer
+          description: ID of the community or trip.
+        admin_id:
+          type: integer
+          description: ID of the admin of the community
+
+        request_type:
+          type: string
+          enum: [request, invite]
+          description: Type of the action (request or invite).
+        request_status:
+          type: string
+          enum: [accepted, rejected, pending]
+          description: Status of the request
+      required:
+        - user_id
+        - community_id
+        - type
+
+    communityRequestObjectDelete:
+      type: object
+      properties:
+        request_id:
+          type: integer
+          description: ID of the request or invitation to be deleted.
+      required:
+        - request_id
+
+
+
+    Train:
+      type: object
+      properties:
+        transport_id:
+          type: integer
+        transport_type:
+          type: string
+        train_number:
+          type: integer
+        train_stations:
+          type: string
+        train_departure_datetime:
+          type: string
+          format: date-time
+        train_arrival_datetime:
+          type: string
+          format: date-time
+
+    TrainCreate:
+      type: object
+      properties:
+        train_number:
+          type: integer
+        transport_type:
+          type: string
+        train_stations:
+          type: string
+        train_departure_datetime:
+          type: string
+          format: date-time
+        train_arrival_datetime:
+          type: string
+          format: date-time
+      required:
+        - train_number
+        - transport_type
+        - train_stations
+        - train_departure_datetime
+        - train_arrival_datetime
+
+    TrainUpdate:
+      type: object
+      properties:
+        train_number:
+          type: integer
+        train_stations:
+          type: string
+        train_departure_datetime:
+          type: string
+          format: date-time
+        train_arrival_datetime:
+          type: string
+          format: date-time
+
+    Road:
+      type: object
+      properties:
+        transport_id:
+          type: integer
+        transport_type:
+          type: string
+
+    RoadCreate:
+      type: object
+      properties:
+        transport_id:
+          type: integer
+      required:
+        - transport_id
+
+    RoadUpdate:
+      type: object
+      properties:
+        transport_id:
+          type: integer
+
+
+    Flight:
+      type: object
+      properties:
+        transport_id:
+          type: integer
+        transport_type:
+          type: string
+        flight_departure_datetime:
+          type: string
+          format: date-time
+        flight_departure_location:
+          type: string
+        flight_arrival_datetime:
+          type: string
+          format: date-time
+        flight_arrival_location:
+          type: string
+        flight_layover_location:
+          type: string
+        flight_layover_duration:
+          type: string
+        flight_duration:
+          type: string
+
+    FlightCreate:
+      type: object
+      properties:
+        flight_departure_datetime:
+          type: string
+          format: date-time
+        transport_type:
+          type: string
+        flight_departure_location:
+          type: string
+        flight_arrival_datetime:
+          type: string
+          format: date-time
+        flight_arrival_location:
+          type: string
+        flight_layover_location:
+          type: string
+        flight_layover_duration:
+          type: string
+        flight_duration:
+          type: string
+      required:
+        - flight_departure_datetime
+        - flight_departure_location
+        - flight_arrival_datetime
+        - flight_arrival_location
+        - transport_type
+
+    FlightUpdate:
+      type: object
+      properties:
+        flight_departure_datetime:
+          type: string
+          format: date-time
+        flight_departure_location:
+          type: string
+        flight_arrival_datetime:
+          type: string
+          format: date-time
+        flight_arrival_location:
+          type: string
+        flight_layover_location:
+          type: string
+        flight_layover_duration:
+          type: string
+        flight_duration:
+          type: string
+
+  securitySchemes:
+
+    customJwt:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/v2/auth
+          tokenUrl: https://accounts.google.com/o/oauth2/token
+
+          scopes:
+            https://www.googleapis.com/auth/userinfo.email: Access to user's email.
+            https://www.googleapis.com/auth/userinfo.profile: Access to user's profile information.
+      bearerFormat: JWT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
